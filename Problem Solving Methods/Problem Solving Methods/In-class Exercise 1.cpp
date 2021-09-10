@@ -41,7 +41,6 @@ int main() {
 		slot1 = 1 + (int)rand() % RMAX;
 		slot2 = 1 + (int)rand() % RMAX;
 		slot3 = 1 + (int)rand() % RMAX;
-
 		
 		printf("First is "); print_slot_result(slot1);
 		printf("Second is "); print_slot_result(slot2);
@@ -58,8 +57,5 @@ int main() {
 			printf("Sorry. Better Luck Next Time");
 
 		printf("\n\n");
-
 	}
-
-	
 }
