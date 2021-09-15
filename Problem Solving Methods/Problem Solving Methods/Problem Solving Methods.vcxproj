@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="In-class Exercise 2.cpp" />
+    <ClCompile Include="7-3-2.cpp" />
+    <ClCompile Include="7-3-3a.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
