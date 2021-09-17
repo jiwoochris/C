@@ -1,4 +1,4 @@
 ﻿  8-3-4.cpp
-C:\Users\정지우\git\C\Problem Solving Methods\Problem Solving Methods\8-3-4.cpp(10,89): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\정지우\git\C\Problem Solving Methods\Problem Solving Methods\8-3-4.cpp(11,69): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\정지우\git\C\Problem Solving Methods\Problem Solving Methods\8-3-4.cpp(11,89): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\정지우\git\C\Problem Solving Methods\Problem Solving Methods\8-3-4.cpp(12,69): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
   Problem Solving Methods.vcxproj -> C:\Users\정지우\git\C\Problem Solving Methods\x64\Debug\Problem Solving Methods.exe

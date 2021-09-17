@@ -2,7 +2,8 @@
 #define MAX 10
 
 void extend(float price[], float quantity[], float amount[]) {
-
+	for (int i = 0; i < MAX; i++)
+		amount[i] = price[i] * quantity[i];
 }
 
 int main() {
@@ -12,6 +13,9 @@ int main() {
 	float amount[MAX];
 
 	extend(price, quantity, amount);
+
+	for (int i = 0; i < MAX; i++)
+		printf( "%f\n", amount[i]);
 
 	return 0;
 }

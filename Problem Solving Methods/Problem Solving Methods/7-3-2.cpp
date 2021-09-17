@@ -34,7 +34,7 @@ int main() {
 	{
 		change(cash[i], &cent25, &cent10, &cent5, &cent1);
 
-		printf("\nCash %f Change --> (%d) cent25, (%d) cent10, (%d) cent5, (%d) cent1\n",
+		printf("\n Cash %f Change --> (%d) cent25, (%d) cent10, (%d) cent5, (%d) cent1\n",
 			cash[i], cent25, cent10, cent5, cent1);
 	}
 

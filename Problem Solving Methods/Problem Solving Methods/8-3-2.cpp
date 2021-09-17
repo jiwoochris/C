@@ -2,7 +2,7 @@
 
 void show(float rates[], int size){
 	for (int i = 0; i < size; i++) {
-		printf(" %f ", rates[i]);
+		printf(" %f\n", rates[i]);
 	}
 }
 
