@@ -26,7 +26,7 @@ void change(float cash, int* cent25, int* cent10, int* cent5, int* cent1) {
 
 int main() {
 
-	float cash[] = { 10.53f, 0.33f, 52.98f, 1.7f };
+	float cash[] = { 10.53f, 0.03f, 52.98f, 1.99f };
 
 	int cent25, cent10, cent5, cent1;
 
