@@ -31,9 +31,10 @@ int partial_match(char search[], char string[]) {
 	int wildcard = 0;
 
 	for (int i = 0; i < strlen(search); i++) {
-		if (string[i] == '*')
+		if (search[i] == '*')
 			wildcard = i;
 	}
+
 
 
 	for (int i = 0; i < strlen(string); i++) {
@@ -47,7 +48,6 @@ int partial_match(char search[], char string[]) {
 				}
 
 				if (exact == 1) {
-					i += wildcard - 1;
 					partial = 1;
 				}
 			}
@@ -68,13 +68,16 @@ int partial_match(char search[], char string[]) {
 				}
 			}
 		}
+
+		else
+			return -1;
 	}
 
 	return count;
 }
 
 int match(char search[], char string[]) {
-	int matches;
+	int matches = 0;
 	int partial = 0;
 
 	for (int i = 0; i < strlen(search); i++) {
@@ -97,7 +100,7 @@ int main() {
 		"hello mister monkey",
 		"hello mister monkey",
 		"hello mister monkey",
-		"my name is lee jongho",
+		"hong hong dong dong",
 		"My name is hong gil dong. My brother is hong je dong. My sister is hong gilja,and her friend is hongdong."
 	};
 
@@ -105,7 +108,7 @@ int main() {
 			"money",
 			"mon*ey",
 			"m*y",
-			"lee *ho",
+			"hong*dong",
 			"hong*dong"
 	};
 
