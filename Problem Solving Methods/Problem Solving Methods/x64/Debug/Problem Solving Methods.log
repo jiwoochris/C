@@ -1,2 +1,3 @@
-﻿  homework3_1_puzzle.cpp
+﻿  homework4_InsertionWithConstraint.cpp
+C:\Users\정지우\git\C\Problem Solving Methods\Problem Solving Methods\homework4_InsertionWithConstraint.cpp(31,2): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
   Problem Solving Methods.vcxproj -> C:\Users\정지우\git\C\Problem Solving Methods\x64\Debug\Problem Solving Methods.exe
