@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="201015_matrix_multiplycation.cpp">
+    <ClCompile Include="1027_wk9_file_open2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
