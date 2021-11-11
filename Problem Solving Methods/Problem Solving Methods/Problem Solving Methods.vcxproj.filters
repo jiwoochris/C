@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1104_lab_grouping.cpp">
+    <ClCompile Include="homework7_Lab2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

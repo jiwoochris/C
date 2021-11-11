@@ -1,0 +1,32 @@
+
+Age from 10 to 19
+----------------------------
+      Ko 15   Soccer
+     Lee 17   Soccer
+    Park 10   Tennis
+      Ra 15    Piano
+    Shin 16   Tennis
+    Jang 15   Soccer
+    Moon 18   Tennis
+
+Age from 20 to 29
+----------------------------
+    Choi 21   Tennis
+    Kang 21   Guitar
+     Cho 25    Piano
+      Mo 24   Guitar
+    Jeon 21   Soccer
+     Lim 21   Tennis
+      Oh 29   Guitar
+
+Age from 30 to 39
+----------------------------
+     Kim 39   Tennis
+     Heo 39   Tennis
+   Jeong 39   Soccer
+    Seol 36    Piano
+
+Age from 40 to 49
+----------------------------
+     Cha 41    Piano
+     Yoo 49   Tennis

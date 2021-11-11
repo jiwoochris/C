@@ -1,20 +1,20 @@
-      Ko 15   Soccer
-     Lee 17   Soccer
-    Park 10   Tennis
-      Ra 15    Piano
-    Shin 16   Tennis
-    Jang 15   Soccer
-    Moon 18   Tennis
-    Choi 21   Tennis
-    Kang 21   Guitar
-     Cho 25    Piano
-      Mo 24   Guitar
-    Jeon 21   Soccer
-     Lim 21   Tennis
-      Oh 29   Guitar
-     Kim 39   Tennis
-     Heo 39   Tennis
-   Jeong 39   Soccer
-    Seol 36    Piano
-     Cha 41    Piano
-     Yoo 49   Tennis
+Kim 39
+Ko 15
+Lee 17
+Choi 21
+Park 10
+Kang 21
+Cho 25
+Heo 39
+Ra 15
+Shin 16
+Jang 15
+Cha 41
+Moon 18
+Jeong 39
+Yoo 49
+Mo 24
+Jeon 21
+Seol 36
+Lim 21
+Oh 29
