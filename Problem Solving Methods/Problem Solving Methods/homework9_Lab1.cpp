@@ -10,6 +10,8 @@ int InsertKey(int new_key, struct NODE* head, struct NODE ** address) {
 	struct NODE* p = head->next, *prev = head;
 	struct NODE* new_node;
 
+	printf("Inserting key : %d\n", new_key);
+
 	while (p) {
 		if (p->key == new_key) return -1;
 		if (p->key > new_key) break;
@@ -18,7 +20,6 @@ int InsertKey(int new_key, struct NODE* head, struct NODE ** address) {
 	}
 
 	new_node = (struct NODE*)malloc(sizeof(struct NODE));
-
 	if (new_node == NULL) {
 		printf("failed");
 		exit(0);
@@ -28,15 +29,27 @@ int InsertKey(int new_key, struct NODE* head, struct NODE ** address) {
 	prev->next = new_node;
 	new_node->next = p;
 
+	if (*address == head->next) {
+		*address = NULL;
+	}
+	else {
+		*address = head->next;
+	}
+
 	return 0;
 }
 
 void scanList(struct NODE* head) {
 	struct NODE* p = head->next;
+	int count = 0;
+
+	printf("--- Traversing the linked list ---\n");
 
 	while (p) {
-		printf("%d\n", p->key);
+		printf("node[%d] : %d\n", count, p->key);
 		p = p->next;
+
+		count++;
 	}
 }
 
@@ -44,7 +57,9 @@ int main() {
 	struct NODE node[7];
 	struct NODE * head = (struct NODE*)malloc(sizeof(struct NODE));
 
-	if (head == NULL) {
+	struct NODE** first_address = (struct NODE**)malloc(sizeof(struct NODE*));
+
+	if (head == NULL || first_address == NULL) {
 		printf("failed");
 		exit(0);
 	}
@@ -59,17 +74,48 @@ int main() {
 	node[1].next = &node[2];
 	node[2].next = NULL;
 
-	if (InsertKey(250, head) == 0)
-		printf("Success\n");
+	*first_address = &node[0];
 
-	if (InsertKey(300, head) == 0)
-		printf("Success\n");
+	if (InsertKey(250, head, first_address) == 0) {
+		printf("Key inserted!\n");
+		if (*first_address != NULL) {
+			printf("New first node created!\n");
+			*first_address = (head->next);
+		}
+	}
+	else
+		printf("Key already exists!\n");
+		
 
-	if (InsertKey(50, head) == 0)
-		printf("Success\n");
+	if (InsertKey(300, head, first_address) == 0) {
+		printf("Key inserted!\n");
+		if (*first_address != NULL) {
+			printf("New first node created!\n");
+			*first_address = (head->next);
+		}
+	}
+	else
+		printf("Key already exists!\n");
 
-	if (InsertKey(500, head) == 0)
-		printf("Success\n");
+	if (InsertKey(50, head, first_address) == 0) {
+		printf("Key inserted!\n");
+		if (*first_address != NULL) {
+			printf("New first node created!\n");
+			*first_address = (head->next);
+		}
+	}
+	else
+		printf("Key already exists!\n");
+
+	if (InsertKey(500, head, first_address) == 0) {
+		printf("Key inserted!\n");
+		if (*first_address != NULL) {
+			printf("New first node created!\n");
+			*first_address = (head->next);
+		}
+	}
+	else
+		printf("Key already exists!\n");
 
 	scanList(head);
 
