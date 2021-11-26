@@ -1,11 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define MAX_QUEUE_SIZE 10
 
 struct QUEUE {
 	int buf[MAX_QUEUE_SIZE];
 	int front;
 	int back;
-}Queue = { {0,}, -1, -1 };
+};
+
+struct QUEUE* q = (struct QUEUE*)malloc(sizeof(struct QUEUE));
+struct QUEUE Queue = *q;
 
 bool queue_full() {
 	return Queue.back >= MAX_QUEUE_SIZE - 1;
@@ -47,6 +51,9 @@ int dequeue() {
 }
 
 int main() {
+
+	Queue = { {0,}, -1, -1 };
+
 	int i = 1;
 
 	while (!queue_full()) {
@@ -60,6 +67,8 @@ int main() {
 	
 	dequeue();
 	enqueue(9999);
+
+	free(q);
 
 	return 0;
 }
