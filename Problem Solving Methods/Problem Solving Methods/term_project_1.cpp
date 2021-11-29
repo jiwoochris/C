@@ -2,33 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Registration {
-	int tag;
-	char date_registered[25];
-	char name[25];
-	int age;
-	char organization[35];
-	char job[15];
-
-	struct Registration* next;
-}r[5];
-
 // P3-1
-void sort_array_data(struct Registration r[]) {
-	int arr_length = sizeof(r) / sizeof(struct Registration);
-	int min, min_index;
-	struct Registration temp;
+void sort_array_data(struct REGISTRATION r[]) {
+	//int arr_length = sizeof(r) / sizeof(struct REGISTRATION);
 
-	
+	int arr_length = 30;
+	int min, min_index;
+	struct REGISTRATION temp;
 
 	for (int i = 0; i < arr_length; i++) {
 		min = r[i].tag;
 		min_index = i;
 
 		for (int j = i; j < arr_length; j++) {
-			if (min > r[i].tag) {
-				min = r[i].tag;
-				min_index = i;
+			if (min > r[j].tag) {
+				min = r[j].tag;
+				min_index = j;
 			}
 		}
 
@@ -65,7 +54,7 @@ void remove_data_from_array(struct Registration r[], int * length, const char * 
 }
 
 // P6-2
-void remove_data_from_array(struct Registration* head, const char* dest_name) {
+void remove_data_from_linked_list(struct Registration* head, const char* dest_name) {
 	struct Registration* p = head->next, * prev = head;
 
 	while (p) {
