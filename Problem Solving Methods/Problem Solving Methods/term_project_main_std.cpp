@@ -1,20 +1,12 @@
-/**
+/*
  * @brief Problem Solving Methods Finals Term Project
- *
- * @todo (남종수) 1-1. search for "Choi". (array)
+ * 
+ * @todo set up for linkd list
+ * 
  * @todo (남종수) 1-2. search for "Choi". (linked list)
  *
- * @todo (남종수) 2-1. search for "Gachon University". (array)
  * @todo (남종수) 2-2. search for "Gachon University". (linked list)
- * 
- * @todo (남소미) 4-1. create linked list using sorted data.
- * @todo (남종수) 5-1. write sorted data to text file. (linked list)
- *
- * @todo (권혜민) 7-1. add student "Paik" to data. (array)
- * @todo (권혜민) 7-2. add student "Paik" to data. (linked list)
  */
-
-
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -55,7 +47,7 @@ void search_name_in_ll(const char* search_key, struct REGISTRATION_ll* head);   
 void search_org_in_arr(const char* search_key, struct REGISTRATION_arr arr[], const int arr_length);    // (남종수) 2-1. search for "Gachon University". (array)
 void search_org_in_ll(const char* search_key, struct REGISTRATION_ll* head);    // (남종수) 2-2. search for "Gachon University". (linked list)
 void sort_arr(struct REGISTRATION_arr arr[], const int arr_length);   // (정지우) 3-1. sort age in tag order.
-void sort_ll(REGISTRATION_ll* new_head);    // (남소미) 4-1. create linked list using sorted data.
+void sort_ll(REGISTRATION_ll* new_head, struct REGISTRATION_arr arr[]);    // (남소미) 4-1. create linked list using sorted data.
 
 void Selection_sort(struct REGISTRATION_arr arr[], const int arr_length);    // Self study
 bool write_sorted_data(const char* new_file_name, struct REGISTRATION_arr arr[], const int arr_length);  // (남종수) 5-1. write sorted data to text file.
@@ -84,21 +76,28 @@ int main() {
         return -1;
     }
 
-    if (!store_in_ll(file_name, head))
+    /*if (!store_in_ll(file_name, head))
     {
+        printf("Error\n");
+        return -1;
+    }*/
+
+    //search_name_in_arr("Choi", registration, arr_length);
+    ///*search_name_in_ll("Choi", head);*/
+
+    //search_org_in_arr("Gachon University", registration, arr_length);
+    ///*search_org_in_ll("Gachon University", head);*/
+    
+
+    sort_arr(registration, arr_length);
+
+    struct REGISTRATION_ll* new_head = (struct REGISTRATION_ll*)malloc(sizeof(struct REGISTRATION_ll));
+    if (new_head == NULL) {
         printf("Error\n");
         return -1;
     }
 
-    search_name_in_arr("Choi", registration, arr_length);
-    search_name_in_ll("Choi", head);
-    search_org_in_arr("Gachon University", registration, arr_length);
-    search_org_in_ll("Gachon University", head);
-
-    sort_arr(registration, arr_length);
-
-    struct REGISTRATION_ll* new_head = NULL;
-    sort_ll(new_head);
+    sort_ll(new_head, registration);
 
     Selection_sort(registration, arr_length);
 
@@ -111,6 +110,8 @@ int main() {
 
     remove_data_from_arr("Choi", registration, &arr_length);
     remove_data_from_ll("Choi", new_head);
+
+    print_ll(new_head);
 
     struct REGISTRATION_arr new_person_arr = { 33, "2020-11-30", "yes", "Gildong Paik", 35, "Gachon University", "Student" };
     struct REGISTRATION_ll new_person_ll = { 33, "2020-11-30", "yes", "Gildong Paik", 35, "Gachon University", "Student", NULL};
@@ -126,29 +127,106 @@ int main() {
 }
 
 
+/* Data Preprocessing (Store File in Array) */
+bool store_in_arr(const char* file_name, struct REGISTRATION_arr arr[], int* arr_length)
+{
+    printf("\t\t\t\t\t\t\tStoring File\n");
 
+    // declare file
+    FILE* file;
 
+    // open file in read mode
+    file = fopen(file_name, "r");
 
+    // file not present
+    if (file == NULL)
+    {
+        printf("Opening %s failed!\n", file_name);
+        return false;
+    }
 
+    // file present
+    printf("Opening %s success!\n", file_name);
 
-
-
-
-void print_arr(struct REGISTRATION_arr arr[], const int arr_length) {
-    for (int i = 0; i < arr_length; i++) {
+    // read file
+    int i = 0;
+    char buffer[1024];
+    char* field;
+    int field_num;
+    while (fgets(buffer, 1024, file))
+    {
+        field_num = 0;
+        field = strtok(buffer, "/");
+        while (field)
+        {
+            switch (field_num)
+            {
+            case 0:
+                arr[i].tag = atoi(field);
+                break;
+            case 1:
+                strcpy(arr[i].date, field);
+                break;
+            case 2:
+                strcpy(arr[i].is_fee_paid, field);
+                break;
+            case 3:
+                strcpy(arr[i].name, field);
+                break;
+            case 4:
+                arr[i].age = atoi(field);
+                break;
+            case 5:
+                strcpy(arr[i].org, field);
+                break;
+            case 6:
+                strcpy(arr[i].job, field);
+                break;
+            }
+            // get next field
+            field = strtok(NULL, "/");
+            field_num++;
+        }
         printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
             arr[i].tag, arr[i].date, arr[i].is_fee_paid, arr[i].name, arr[i].age, arr[i].org, arr[i].job);
+        i++;
+    }
+    printf("Storing %s success!\n", file_name);
+
+    // close file
+    fclose(file);
+
+    *arr_length = i;
+    return true;
+}
+
+void search_name_in_arr(const char* search_key, struct REGISTRATION_arr arr[], const int arr_length) {
+    for (int i = 0; i < arr_length; i++) {
+        char cmpstr[25] = " ";
+        if (strcmp(strrchr(arr[i].name, ' '), strcat(cmpstr, search_key)) == 0) {
+            printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
+                arr[i].tag, arr[i].date, arr[i].is_fee_paid, arr[i].name, arr[i].age, arr[i].org, arr[i].job);
+        }
     }
 }
 
-void print_ll(struct REGISTRATION_ll* head) {
-    struct REGISTRATION_ll* p = head->next;
-    while (p) {
-        printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
-            p->tag, p->date, p->is_fee_paid, p->name, p->age, p->org, p->job);
-        p = p->next;
+void search_name_in_ll(const char* search_key, struct REGISTRATION_ll* head) {
+
+}
+
+void search_org_in_arr(const char* search_key, struct REGISTRATION_arr arr[], const int arr_length) {
+    for (int i = 0; i < arr_length; i++) {
+        if (strcmp(arr[i].org, search_key) == 0) {
+            printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
+                arr[i].tag, arr[i].date, arr[i].is_fee_paid, arr[i].name, arr[i].age, arr[i].org, arr[i].job);
+        }
     }
 }
+
+void search_org_in_ll(const char* search_key, struct REGISTRATION_ll* head) {
+
+}
+
 
 // P3-1
 void sort_arr(struct REGISTRATION_arr arr[], const int arr_length) {
@@ -172,28 +250,86 @@ void sort_arr(struct REGISTRATION_arr arr[], const int arr_length) {
     }
 }
 
-
+//4-1
+void sort_ll(REGISTRATION_ll* new_head, struct REGISTRATION_arr arr[])
+{
+    int i;
+    struct REGISTRATION_ll* node = (struct REGISTRATION_ll*)malloc(30 * sizeof(struct REGISTRATION_ll));
+    struct REGISTRATION_ll* ptr;
+    new_head->next = &node[0];
+    ptr = new_head->next;
+    if (node != NULL) {
+        for (i = 0; i < 30; i++) {
+            node[i].tag = arr[i].tag;
+            strcpy(node[i].date, arr[i].date);
+            strcpy(node[i].is_fee_paid, arr[i].is_fee_paid);
+            strcpy(node[i].name, arr[i].name);
+            node[i].age = arr[i].age;
+            strcpy(node[i].org, arr[i].org);
+            strcpy(node[i].job, arr[i].job);
+            if (i > 0) {
+                ptr->next = &node[i];
+                ptr = &node[i];
+            }
+        }
+        node[29].next = NULL;
+        print_ll(new_head);
+    }
+}
 
 
 
 //self study
 void Selection_sort(struct REGISTRATION_arr arr[], const int arr_length)
 {
-    int i, j, min, age_group, age_group2;
+    int i, j, min, age_group, min_arr;
     struct REGISTRATION_arr temp;
     for (i = 0; i < arr_length - 1; i++) {
-        min = i;
-        for (j = j + 1; j < arr_length; j++) {
+        min = arr[i].age / 10;
+        for (j = i + 1; j < arr_length; j++) {
             age_group = arr[j].age / 10;
-            age_group2 = arr[min].age / 10;
-            if (age_group < age_group2)
-                min = j;
+            if (age_group < min)
+                min = age_group;
+            min_arr = j;
         }
-        temp = arr[min];
-        arr[min] = arr[i];
+        temp = arr[min_arr];
+        arr[min_arr] = arr[i];
         arr[i] = temp;
     }
     print_arr(arr, arr_length);
+}
+
+
+// 5-1 /* Write File */
+bool write_sorted_data(const char* new_file_name, struct REGISTRATION_arr arr[], const int arr_length)
+{
+    // declare file
+    FILE* new_file;
+
+    // open file in write mode
+    new_file = fopen(new_file_name, "w");
+
+    // file not present
+    if (new_file == NULL)
+    {
+        printf("Opening %s failed!\n", new_file_name);
+        return false;
+    }
+
+    // file present
+    printf("Opening %s success!\n", new_file_name);
+    for (int i = 0; i < arr_length; i++)
+    {
+        // write structure data to file
+        fprintf(new_file, "Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
+            arr[i].tag, arr[i].date, arr[i].is_fee_paid, arr[i].name, arr[i].age, arr[i].org, arr[i].job);
+    }
+    printf("Writing %s success!\n", new_file_name);
+
+    // close file
+    fclose(new_file);
+
+    return true;
 }
 
 // 6-1
@@ -211,7 +347,7 @@ void remove_data_from_arr(const char* remove_key, struct REGISTRATION_arr arr[],
 
     for (int i = 0; i < prev_length; i++) {
         if (arr[i].tag == 0) {
-            for (int j = 0; j < prev_length; j++) {
+            for (int j = i; j < prev_length; j++) {
                 if (arr[j].tag != 0) {
                     temp = arr[j];
                     arr[j] = arr[i];
@@ -226,13 +362,15 @@ void remove_data_from_arr(const char* remove_key, struct REGISTRATION_arr arr[],
 // 6-2
 void remove_data_from_ll(const char* remove_key, struct REGISTRATION_ll* head) {
     struct REGISTRATION_ll* p = head->next, * prev = head;
+    struct REGISTRATION_ll* temp = NULL;
 
-    while (p) {
+    while (p != NULL) {
         char cmpstr[25] = " ";
         if (strcmp(strrchr(p -> name, ' '), strcat(cmpstr, remove_key)) == 0) {
             prev->next = p->next;
-            free(p);
-            p = prev -> next;
+            temp = p;
+            p = p->next;
+            free(temp);
         }
         else {
             prev = p;
@@ -241,6 +379,45 @@ void remove_data_from_ll(const char* remove_key, struct REGISTRATION_ll* head) {
     }
 }
 
+// 7-1
+void insert_data_to_arr(struct REGISTRATION_arr * new_person, struct REGISTRATION_arr arr[], int* arr_length) {
+    struct REGISTRATION_arr temp1, temp2;
+    int prev_length = *arr_length;
+    int i, j;
+
+    for (i = 0; i <= prev_length; i++) {
+        if (arr[i].tag > new_person->tag) {
+            break;
+        }
+    }
+
+    temp1 = arr[i];
+    arr[i] = *new_person;
+    (*arr_length)++;
+
+    for (j = i; j < prev_length; j++) {
+        temp2 = arr[j + 1];
+        arr[j + 1] = temp1;
+        temp1 = temp2;
+    }
+}
+
+// 7-2
+void insert_data_to_ll(struct REGISTRATION_ll* new_person, struct REGISTRATION_ll* head) {
+    struct REGISTRATION_ll* p = head->next, * prev = head;
+    struct REGISTRATION_ll* new_node;
+
+    while (p) {
+        if (p->tag > new_person->tag) break;
+        prev = p;
+        p = p->next;
+    }
+    new_node = (struct REGISTRATION_ll*)malloc(sizeof(struct REGISTRATION_ll));
+    new_node = new_person;
+
+    prev->next = new_node;
+    new_node->next = p;
+}
 
 //8-1
 bool check_sum(struct REGISTRATION_arr arr[], const int arr_length)
@@ -290,5 +467,25 @@ bool check_sum(struct REGISTRATION_arr arr[], const int arr_length)
 
     if (checksum_org == checksum_copy) {                         // compare the original checksum with the copied checksum
         return 1;
+    }
+}
+
+
+void print_arr(struct REGISTRATION_arr arr[], const int arr_length) {
+    printf("\n\n------------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+    for (int i = 0; i < arr_length; i++) {
+        printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
+            arr[i].tag, arr[i].date, arr[i].is_fee_paid, arr[i].name, arr[i].age, arr[i].org, arr[i].job);
+    }
+}
+
+void print_ll(struct REGISTRATION_ll* head) {
+    struct REGISTRATION_ll* p = head->next;
+    printf("\n\n------------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+
+    while (p) {
+        printf("Tag = %2d, Date = %10s, Fee Paid = %3s, Name = %16s, Age = %2d, Org = %32s, Job = %12s",
+            p->tag, p->date, p->is_fee_paid, p->name, p->age, p->org, p->job);
+        p = p->next;
     }
 }

@@ -19,11 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="term_project_1.cpp" />
-    <ClCompile Include="term_project_2.cpp" />
-    <ClCompile Include="term_project_3.cpp" />
-    <ClCompile Include="term_project_4.cpp" />
-    <ClCompile Include="term_project_main.cpp" />
     <ClCompile Include="term_project_main_std.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
