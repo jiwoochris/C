@@ -1,0 +1,30 @@
+Tag =  1, Date = 2020-08-25, Fee Paid = yes, Name =        Jihu Choi, Age = 74, Org =               Harvard University, Job =    engineer
+Tag =  2, Date = 2020-08-22, Fee Paid =  no, Name =    Seungmin Choi, Age = 31, Org =                Gachon University, Job =       staff
+Tag =  3, Date = 2020-07-01, Fee Paid =  no, Name =      Chinho Park, Age = 53, Org =                Peking University, Job =    engineer
+Tag =  4, Date = 2020-07-03, Fee Paid =  no, Name =         Jihu Cho, Age = 71, Org =              Tsinghua University, Job =    engineer
+Tag =  5, Date = 2020-06-12, Fee Paid = yes, Name =    Chunyong Park, Age = 48, Org =          University of Cambridge, Job =     student
+Tag =  6, Date = 2020-06-04, Fee Paid = yes, Name =   Bobby Anderson, Age = 33, Org =                McGill University, Job =    engineer
+Tag =  7, Date = 2020-06-28, Fee Paid = yes, Name =        Jihu Park, Age = 70, Org =   Australian National University, Job =     student
+Tag =  8, Date = 2020-06-04, Fee Paid =  no, Name =    Moises Barlow, Age = 57, Org =                Gachon University, Job =    engineer
+Tag =  9, Date = 2020-06-16, Fee Paid = yes, Name =     Kyungmin Kim, Age = 45, Org =             University of Sydney, Job =    marketer
+Tag = 10, Date = 2020-06-06, Fee Paid = yes, Name =    William Cohen, Age = 37, Org =          University of Cambridge, Job =    engineer
+Tag = 11, Date = 2020-07-22, Fee Paid =  no, Name =     Kwangsu Choi, Age = 48, Org =        Seoul National University, Job =    marketer
+Tag = 12, Date = 2020-07-22, Fee Paid =  no, Name =      Owen Martin, Age = 66, Org =                Gachon University, Job =    engineer
+Tag = 13, Date = 2020-06-03, Fee Paid = yes, Name =       Chinho Cho, Age = 68, Org =                Gachon University, Job =     student
+Tag = 14, Date = 2020-08-15, Fee Paid = yes, Name =      Kwangsu Cho, Age = 48, Org =                Gachon University, Job =   executive
+Tag = 15, Date = 2020-07-12, Fee Paid =  no, Name =    Tongbang Choi, Age = 26, Org =               Cornell University, Job =    engineer
+Tag = 16, Date = 2020-08-16, Fee Paid = yes, Name =     Tongbang Kim, Age = 39, Org =              Tsinghua University, Job =     student
+Tag = 17, Date = 2020-08-14, Fee Paid =  no, Name =   Chunyong Chang, Age = 75, Org =                Gachon University, Job =     student
+Tag = 18, Date = 2020-06-14, Fee Paid =  no, Name =    Tongbang Park, Age = 32, Org =              New York University, Job =    engineer
+Tag = 19, Date = 2020-06-07, Fee Paid = yes, Name =     Chunyong Kim, Age = 34, Org =               Harvard University, Job =       staff
+Tag = 20, Date = 2020-07-30, Fee Paid = yes, Name =       Chinho Kim, Age = 52, Org =                Gachon University, Job =    engineer
+Tag = 21, Date = 2020-07-21, Fee Paid = yes, Name =       Jude Smith, Age = 38, Org =               Cornell University, Job =   executive
+Tag = 22, Date = 2020-06-29, Fee Paid =  no, Name =     Tongbang Cho, Age = 29, Org =          Northwestern University, Job =    marketer
+Tag = 23, Date = 2020-06-15, Fee Paid = yes, Name =     Seungmin Cho, Age = 71, Org =              Stanford University, Job =   professor
+Tag = 24, Date = 2020-07-24, Fee Paid =  no, Name = Stefan Wilkerson, Age = 48, Org =          University of Melbourne, Job =   executive
+Tag = 25, Date = 2020-06-09, Fee Paid =  no, Name =      Archie Hunt, Age = 60, Org =                 Fudan University, Job =     student
+Tag = 26, Date = 2020-06-30, Fee Paid = yes, Name =  Sincere Bradley, Age = 58, Org =          University of Hong Kong, Job =       staff
+Tag = 27, Date = 2020-08-24, Fee Paid =  no, Name =    Konner French, Age = 42, Org =                Gachon University, Job =   professor
+Tag = 28, Date = 2020-08-27, Fee Paid =  no, Name =     Kwangsu Park, Age = 43, Org =       University of Pennsylvania, Job =     student
+Tag = 29, Date = 2020-06-08, Fee Paid = yes, Name =  Bailey Houghton, Age = 31, Org =                Gachon University, Job =    engineer
+Tag = 30, Date = 2020-07-13, Fee Paid = yes, Name =    Kyungmin Choi, Age = 44, Org =                  Duke University, Job =     student
