@@ -478,14 +478,18 @@ void remove_data_from_arr(const char* remove_key, struct REGISTRATION_arr arr[],
 void remove_data_from_ll(const char* remove_key, struct REGISTRATION_ll* head)
 {
     struct REGISTRATION_ll* p = head->next, * prev = head;
+    struct REGISTRATION_ll* temp = NULL;
 
     while (p)
     {
         char cmpstr[25] = " ";
         if (strcmp(strrchr(p->name, ' '), strcat(cmpstr, remove_key)) == 0)
         {
+            temp = p;
             prev->next = p->next;
             p = p->next;
+
+            /*free(temp);*/
         }
         else
         {
