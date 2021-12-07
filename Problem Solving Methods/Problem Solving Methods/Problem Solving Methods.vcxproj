@@ -19,7 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="term_project_main_std.cpp" />
+    <ClCompile Include="211208_multiple_file_exercise.cpp" />
+    <ClCompile Include="circle.cpp" />
+    <ClCompile Include="rectangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="circle.h" />
+    <ClInclude Include="mydef.h" />
+    <ClInclude Include="rectangle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
