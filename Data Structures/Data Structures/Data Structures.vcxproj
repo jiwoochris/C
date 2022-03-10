@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="220303 lab2.cpp" />
+    <ClCompile Include="PHW 1-1.cpp" />
+    <ClCompile Include="PHW 1-2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
