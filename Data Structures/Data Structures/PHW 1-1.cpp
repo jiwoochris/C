@@ -13,7 +13,7 @@ int queue_full() {
 }
 
 int queue_empty() {
-    if (front == rear == -1) // front cannot be greater than rear
+    if (front == rear && rear == -1) // front cannot be greater than rear
         return 1;
     return 0; // return 0 only if the above condition is false
 }
@@ -33,11 +33,13 @@ int dequeue() {
     return temp;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////// 여기서부터 할 차례
 // helper function: print the current queue
 void print_queue() {
     printf("queue = ");
-    for (int i = front; i <= rear; i++)
-        printf(" %d", queue[i]);
+    for (int i = front; i % MAX_SIZE <= rear % MAX_SIZE; i++)
+        printf(" %d", queue[i % MAX_SIZE]);
     printf(" (front=%d, rear=%d)\n", front, rear);
 }
 
