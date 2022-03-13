@@ -28,18 +28,30 @@ void enqueue(int x) {
 
 int dequeue() {
     int temp = queue[front];
+    if (front == rear) {
+        front = -1;
+        rear = -1;
+        return temp;
+    }
+
+
     front++;
     front %= MAX_SIZE;
     return temp;
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////// 여기서부터 할 차례
 // helper function: print the current queue
 void print_queue() {
     printf("queue = ");
-    for (int i = front; i % MAX_SIZE <= rear % MAX_SIZE; i++)
-        printf(" %d", queue[i % MAX_SIZE]);
+    if (front <= rear) {
+        for (int i = 0; i <= rear - front; i++)
+            printf(" %d", queue[front + i]);
+    }
+    else {
+        for (int i = 0; i <= 5 + rear - front; i++)
+            printf(" %d", queue[(front + i) % MAX_SIZE]);
+    }
+    
     printf(" (front=%d, rear=%d)\n", front, rear);
 }
 
@@ -77,12 +89,13 @@ void run_dequeues(int num) {
 }
 
 int main() {
-    int numbers[] = { 3, 9, 4, 5, 2, 1, 6, 8, 7, 5, 8 };
+    int list1[] = { 10, 50, 20, 70};
+    int list2[] = { 100, 40, 140 };
+
 
     print_queue();
-    run_enqueues(numbers, 5);
+    run_enqueues(list1, 4);
+    run_dequeues(1);
+    run_enqueues(list2, 3);
     run_dequeues(3);
-    run_enqueues(numbers, 10);
-    run_dequeues(11);
-    run_enqueues(numbers, 3);
 }
