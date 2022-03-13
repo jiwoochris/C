@@ -13,7 +13,7 @@ int queue_full() {
 }
 
 int queue_empty() {
-    if (front == rear && rear == -1) // front cannot be greater than rear
+    if (front == -1 && rear == -1) // empty only if front == rear == -1
         return 1;
     return 0; // return 0 only if the above condition is false
 }
@@ -28,12 +28,11 @@ void enqueue(int x) {
 
 int dequeue() {
     int temp = queue[front];
-    if (front == rear) {
+    if (front == rear) { // if there is only one element in this circular queue, reinitialize queue
         front = -1;
         rear = -1;
         return temp;
     }
-
 
     front++;
     front %= MAX_SIZE;
@@ -43,11 +42,14 @@ int dequeue() {
 // helper function: print the current queue
 void print_queue() {
     printf("queue = ");
-    if (front <= rear) {
+    if (front == -1 && rear == -1) {
+        printf("");
+    }
+    else if (front <= rear) {    // if front <= rear, same as normal queue
         for (int i = 0; i <= rear - front; i++)
             printf(" %d", queue[front + i]);
     }
-    else {
+    else {  // if not
         for (int i = 0; i <= 5 + rear - front; i++)
             printf(" %d", queue[(front + i) % MAX_SIZE]);
     }
@@ -98,4 +100,9 @@ int main() {
     run_dequeues(1);
     run_enqueues(list2, 3);
     run_dequeues(3);
+
+
+    printf("-------------------- empty queue test --------------------\n");
+    run_dequeues(3);
+    run_enqueues(list1, 4);
 }
