@@ -12,12 +12,10 @@ struct Node {
 
 struct Node* front = NULL; // front is empty initially
 
-struct Node* rear = NULL; // rear is empty initially
-
-int n_nodes = 0; // a variable to store number of nodes in queue
+int n_nodes = 0; // a variable to store number of nodes in stack
 
 
-int queue_empty() {
+int stack_empty() {
 
     if (n_nodes == 0)
 
@@ -34,6 +32,8 @@ void push(int x) {
 
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
 
+    struct Node* p = front, *prev = NULL;
+
     // test if memory allocation failed
 
     if (temp == NULL) {
@@ -44,61 +44,66 @@ void push(int x) {
 
     }
 
-
-
     temp->data = x;
-
     temp->link = NULL; // temp will be added at the tail of the linked list (become rear)
 
-    if (front == NULL && rear == NULL) {
+    if (front == NULL) {
 
-        front = rear = temp;
+        front = temp;
 
         n_nodes++; // to count the number of nodes in stack
 
-        return;
-
     }
+    else {
+        while (p) {
+            prev = p;
+            p = p->link;
+        }
+        prev->link = temp;   // temp added at the tail of linked list
 
-    rear->link = temp; // temp added at the tail of linked list
-
-    rear = temp; // temp becomes a new rear
-
-    n_nodes++; // to count the number of nodes in stack
-
+        n_nodes++; // to count the number of nodes in stack
+    }
 }
 
 
 
 int pop() {
 
-    struct Node* temp = rear;
+    struct Node* p = front, * prev = NULL;
 
     int value;
 
-    value = front->data;
+    while (p->link) {
+        prev = p;
+        p = p->link;
+    }
 
-    front = front->link; // make the next node front
+    value = p->data;
 
-    free(temp);
+    if (prev == NULL) {
+        front = NULL;
+    }
+    else {
+        prev->link = NULL;
+        free(p);
+    }
 
     n_nodes--; // to count the number of nodes in stack
 
     return value;
-
 }
 
 
 
-// helper function: traverse queue from front to rear and print elements
+// helper function: traverse stack from front to rear and print elements
 
-void print_queue() {
+void print_stack() {
 
     struct Node* n;
 
     n = front;
 
-    printf("queue =");
+    printf("stack =");
 
     while (n != NULL) {
 
@@ -129,7 +134,7 @@ void run_pushs(int arr[], int num) {
 
         push(arr[i]);
 
-        print_queue();
+        print_stack();
 
     }
 
@@ -149,7 +154,7 @@ void run_pops(int num) {
 
         printf("pop() ");
 
-        if (!queue_empty()) {
+        if (!stack_empty()) {
 
             value = pop();
 
@@ -159,14 +164,14 @@ void run_pops(int num) {
 
         else {
 
-            printf("queue empty! ");
+            printf("stack empty! ");
 
-            front = rear = NULL;
+            front = NULL;
 
 
         }
 
-        print_queue();
+        print_stack();
 
     }
 
@@ -180,7 +185,7 @@ int main() {
 
 
 
-    print_queue();
+    print_stack();
 
     run_pushs(numbers, 5);
 
