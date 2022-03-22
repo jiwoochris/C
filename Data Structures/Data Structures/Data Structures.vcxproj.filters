@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PHW 1-4.cpp">
+    <ClCompile Include="stack_with_linked_list.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
