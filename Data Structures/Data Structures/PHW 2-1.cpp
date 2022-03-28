@@ -55,7 +55,7 @@ void push(int x) {
 
     }
     else {
-        while (p) {
+        while (p) {     // traverse stack from front
             prev = p;
             p = p->link;
         }
@@ -73,7 +73,7 @@ int pop() {
 
     int value;
 
-    while (p->link) {
+    while (p->link) {        // traverse stack from front
         prev = p;
         p = p->link;
     }
@@ -146,7 +146,7 @@ void run_pop() {
     
     /*printf("pop() ");*/
     
-    if (!stack_empty()) {
+    if (!stack_empty()) {       // if stack is not empty
         value = pop();
 
         printf("%d ", value);
@@ -166,7 +166,7 @@ void run_pop() {
 
 }
 
-void decimal_to_binary(int num) {
+void decimal_to_binary(int num) {       // convert decimal number to binary number
     int input = num;
     while (num != 0) {
         run_push(num % 2);
@@ -175,7 +175,7 @@ void decimal_to_binary(int num) {
 
     printf("%d => ", input);
 
-    while (front != NULL) {
+    while (front != NULL) {         // pop elements until the stack is empty
         run_pop();
     }
 
