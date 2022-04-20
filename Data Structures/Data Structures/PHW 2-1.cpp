@@ -168,10 +168,10 @@ void run_pop() {
 
 void decimal_to_binary(int num) {       // convert decimal number to binary number
     int input = num;
-    while (num != 0) {
+    do {
         run_push(num % 2);
         num = num / 2;
-    }
+    } while (num != 0);
 
     printf("%d => ", input);
 
@@ -184,7 +184,7 @@ void decimal_to_binary(int num) {       // convert decimal number to binary numb
 
 
 int main() {
-    int test_set[] = { 8, 233, 1000, 1, 2048 };
+    int test_set[] = { 0, 233, 1000, 4, 2048 };
 
     for (int i = 0; i < 5; i++) {
         decimal_to_binary(test_set[i]);

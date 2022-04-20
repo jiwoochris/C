@@ -191,10 +191,10 @@ int count_num(node* T, int* num)		// Whenever visiting node, num++ for counting 
 {
 	if (T != NULL)
 	{
-		(* num)++;
+		(*num)++;
 
 		count_num(T->left, num);
-		
+
 		count_num(T->right, num);
 	}
 
@@ -246,7 +246,7 @@ void search(node* T, int x)
 		else
 			printf("Search : Found the key => %d\n\n", T->data);
 	}
-	
+
 }
 
 void search_highest_key(node* T)
@@ -268,8 +268,8 @@ void search_less_than(node* T, int x) {
 	if (T != NULL) {
 
 		search_less_than(T->left, x);
-		
-		if(T->data < x)
+
+		if (T->data < x)
 			printf("%d ", T->data);
 
 		search_less_than(T->right, x);
