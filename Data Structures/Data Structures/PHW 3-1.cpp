@@ -246,7 +246,6 @@ void search(node* T, int x)
 		else
 			printf("Search : Found the key => %d\n\n", T->data);
 	}
-
 }
 
 void search_highest_key(node* T)
