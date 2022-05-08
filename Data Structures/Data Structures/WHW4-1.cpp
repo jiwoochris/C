@@ -109,7 +109,7 @@ int main(void)
 {
     int i;
     struct kd_node_t wp[] = {
-        {{2, 3}}, {{5, 4}}, {{9, 6}}, {{4, 7}}, {{8, 1}}, {{7, 2}}
+        {{2, 3}}, {{5, 4}}, {{9, 6}}
     };
     struct kd_node_t testNode = { {9, 2} };
     struct kd_node_t* root, * found, * million;
@@ -128,7 +128,7 @@ int main(void)
 
     million = (struct kd_node_t*)calloc(N, sizeof(struct kd_node_t));
     srand(time(0));
-    for (i = 0; i < N; i++) rand_pt(million[i]);
+    for (i = 0; i < N; i++) rand_pt(million[i]);S
 
     root = make_tree(million, N, 0, 3);
     rand_pt(testNode);
