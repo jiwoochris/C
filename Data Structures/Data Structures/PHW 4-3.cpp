@@ -102,9 +102,47 @@ void nearest(struct kd_node_t* root, struct kd_node_t* nd, int i, int dim,
     nearest(dx > 0 ? root->right : root->left, nd, i, dim, best, best_dist);
 }
 
-#define N 1000000
-#define rand1() (rand() / (double)RAND_MAX)
-#define rand_pt(v) { v.x[0] = rand1(); v.x[1] = rand1(); v.x[2] = rand1(); }
+void point_search(struct kd_node_t* root, struct kd_node_t* key_node, int i, int dim) {
+    if (root == NULL)
+        printf("Search Failed : (%g, %g)\n", key_node->x[0], key_node->x[1]);
+
+    else {
+        bool same = true;
+        for (int i = 0; i < dim; i++) {
+            if (root->x[i] != key_node->x[i])
+                same = false;
+        }
+
+        if (same == true) {
+            printf("Search Success : (%g, %g)\n", key_node->x[0], key_node->x[1]);
+        }
+        else {
+            point_search(key_node->x[i] <= root->x[i] ? root->left : root->right,
+                key_node, (i+1)%dim, 2);
+        }
+    }
+}
+
+void range_search(struct kd_node_t* root, struct kd_node_t* BR_left, struct kd_node_t* BR_right,int i, int dim) {
+    if (root == NULL)
+        return;
+
+    bool same = true;
+    for (int i = 0; i < dim; i++) {
+        if (!(BR_left->x[i] <= root->x[i] && root->x[i] <= BR_right->x[i]))
+            same = false;
+    }
+
+    if (same == true)
+        printf("In the range : (%g, %g)\n", root->x[0], root->x[1]);
+
+    if(BR_left->x[i] <= root->x[i] || BR_right->x[i] <= root->x[i])
+        range_search(root->left, BR_left, BR_right, (i + 1) % dim, 2);
+
+    if (BR_left->x[i] >= root->x[i] || BR_right->x[i] >= root->x[i])
+        range_search(root->right, BR_left, BR_right, (i + 1) % dim, 2);
+}
+
 int main(void)
 {
     struct kd_node_t wp[] = {
@@ -124,6 +162,29 @@ int main(void)
         "found (%g, %g) dist %g\nseen %d nodes\n\n",
         testNode.x[0], testNode.x[1],
         found->x[0], found->x[1], sqrt(best_dist), visited);
+
+
+
+    printf("\n\nPoint Search\n\n");
+
+    struct kd_node_t testNode1 = { {5, 4} };
+    struct kd_node_t testNode2 = { {4, 7} };
+    struct kd_node_t testNode3 = { {10, 5} };
+
+    point_search(root, &testNode1, 0, 2);
+    point_search(root, &testNode2, 0, 2);
+    point_search(root, &testNode3, 0, 2);
+
+    printf("\n\nRange Search\n\n");
+
+    struct kd_node_t BR_left = { {6, 3} };
+    struct kd_node_t BR_right = { {9, 7} };
+
+    range_search(root, &BR_left, &BR_right, 0, 2);
+    
+
+
+
 
     return 0;
 }
