@@ -58,6 +58,7 @@ void change_row_t2(int a, int b) {
 	t2[b].c[2] = temp;
 }
 
+// sort Table 1 (on column 3)
 void duplex_selection_sort_t1() {
 	int max;
 	int min;
@@ -86,6 +87,7 @@ void duplex_selection_sort_t1() {
 	}
 }
 
+// sort Table 2 (on column 1)
 void duplex_selection_sort_t2() {
 	int max;
 	int min;
@@ -157,6 +159,11 @@ void quick_sort_t2(int first, int last) {
 		quick_sort_t2(j + 1, last);
 	}
 }
+
+// a function that joins 2 tables,
+// where t1c is the array index for a column of table1,
+// and t2c is the array index for a column of table2;
+// and val1 is the user - specified value for the t1c column
 
 void join(int t1c, int t2c, int val) {
 	int r1 = 0;
@@ -232,6 +239,7 @@ int main() {
 
 
 	// merge join of the two tables
+	// Test that the join function joins the 2 tables based on the value 55 for column 3 of table1 and the value of column1 of table 2. (Print the concatenated rows.)
 	join(2, 0, 55);
 		
 

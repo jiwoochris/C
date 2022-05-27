@@ -8,6 +8,8 @@ struct node {
 	struct node* next;
 }buckets[33];
 
+
+// sum the ASCII code of each alphabet in the key, and then use the modulo function(sum % 33)
 int hash(const char* input) {   
 
     int result = 0;
