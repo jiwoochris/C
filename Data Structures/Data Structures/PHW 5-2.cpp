@@ -3,27 +3,23 @@
 #include<time.h>
 
 struct table1 {
-	int c1;
-	int c2;
-	int c3;
+	int c[3];
 }t1[15];
 
 struct table2 {
-	int c1;
-	int c2;
-	int c3;
+	int c[3];
 }t2[10];
 
 void print_table() {
 
 	printf("\nTable 1\n");
 	for (int i = 0; i < 15; i++) {
-		printf("\t %d \t %d \t %d\n", t1[i].c1, t1[i].c2, t1[i].c3);
+		printf("\t %d \t %d \t %d\n", t1[i].c[0], t1[i].c[1], t1[i].c[2]);
 	}
 
 	printf("\n\nTable 2\n");
 	for (int i = 0; i < 10; i++) {
-		printf("\t %d \t %d \t %d\n", t2[i].c1, t2[i].c2, t2[i].c3);
+		printf("\t %d \t %d \t %d\n", t2[i].c[0], t2[i].c[1], t2[i].c[2]);
 	}
 	printf("\n\n");
 }
@@ -32,34 +28,34 @@ void change_row_t1(int a, int b) {
 
 	int temp;
 
-	temp = t1[a].c1;
-	t1[a].c1 = t1[b].c1;
-	t1[b].c1 = temp;
+	temp = t1[a].c[0];
+	t1[a].c[0] = t1[b].c[0];
+	t1[b].c[0] = temp;
 
-	temp = t1[a].c2;
-	t1[a].c2 = t1[b].c2;
-	t1[b].c2 = temp;
+	temp = t1[a].c[1];
+	t1[a].c[1] = t1[b].c[1];
+	t1[b].c[1] = temp;
 
-	temp = t1[a].c3;
-	t1[a].c3 = t1[b].c3;
-	t1[b].c3 = temp;
+	temp = t1[a].c[2];
+	t1[a].c[2] = t1[b].c[2];
+	t1[b].c[2] = temp;
 }
 
 void change_row_t2(int a, int b) {
 
 	int temp;
 
-	temp = t2[a].c1;
-	t2[a].c1 = t2[b].c1;
-	t2[b].c1 = temp;
+	temp = t2[a].c[0];
+	t2[a].c[0] = t2[b].c[0];
+	t2[b].c[0] = temp;
 
-	temp = t2[a].c2;
-	t2[a].c2 = t2[b].c2;
-	t2[b].c2 = temp;
+	temp = t2[a].c[1];
+	t2[a].c[1] = t2[b].c[1];
+	t2[b].c[1] = temp;
 
-	temp = t2[a].c3;
-	t2[a].c3 = t2[b].c3;
-	t2[b].c3 = temp;
+	temp = t2[a].c[2];
+	t2[a].c[2] = t2[b].c[2];
+	t2[b].c[2] = temp;
 }
 
 void duplex_selection_sort_t1() {
@@ -73,13 +69,13 @@ void duplex_selection_sort_t1() {
 		min = 999;
 
 		for (int j = i; j < 15-i; j++) {
-			if (min > t1[j].c3) {
-				min = t1[j].c3;
+			if (min > t1[j].c[2]) {
+				min = t1[j].c[2];
 				min_i = j;
 			}
 
-			if (max < t1[j].c3) {
-				max = t1[j].c3;
+			if (max < t1[j].c[2]) {
+				max = t1[j].c[2];
 				max_i = j;
 			}
 		}
@@ -102,13 +98,13 @@ void duplex_selection_sort_t2() {
 
 
 		for (int j = i; j < 10 - i; j++) {
-			if (min > t2[j].c1) {
-				min = t2[j].c1;
+			if (min > t2[j].c[0]) {
+				min = t2[j].c[0];
 				min_i = j;
 			}
 				
-			if (max < t2[j].c1) {
-				max = t2[j].c1;
+			if (max < t2[j].c[0]) {
+				max = t2[j].c[0];
 				max_i = j;
 			}
 		}
@@ -127,9 +123,9 @@ void quick_sort_t1(int first, int last) {
 		i = first;
 		j = last;
 		while (i < j) {
-			while (t1[i].c3 <= t1[pivot].c3 && i < last)
+			while (t1[i].c[2] <= t1[pivot].c[2] && i < last)
 				i++;
-			while (t1[j].c3 > t1[pivot].c3)
+			while (t1[j].c[2] > t1[pivot].c[2])
 				j--;
 			if (i < j) {
 				change_row_t1(i, j);
@@ -148,9 +144,9 @@ void quick_sort_t2(int first, int last) {
 		i = first;
 		j = last;
 		while (i < j) {
-			while (t2[i].c1 <= t2[pivot].c1 && i < last)
+			while (t2[i].c[0] <= t2[pivot].c[0] && i < last)
 				i++;
-			while (t2[j].c1 > t2[pivot].c1)
+			while (t2[j].c[0] > t2[pivot].c[0])
 				j--;
 			if (i < j) {
 				change_row_t2(i, j);
@@ -162,19 +158,19 @@ void quick_sort_t2(int first, int last) {
 	}
 }
 
-void merge_join() {
+void join(int t1c, int t2c, int val) {
 	int r1 = 0;
 	int r2 = 0;
 
 	printf("\nMerge Join\n");
 
 	while (r1 < 15 && r2 < 10) {
-		if (t1[r1].c3 == t2[r2].c1) {
-			printf("\t %d \t %d \t %d \t %d \t %d\n", t1[r1].c1, t1[r1].c2, t1[r1].c3, t2[r2].c2, t2[r2].c3);
+		if (t1[r1].c[t1c] == t2[r2].c[t2c] && t2[r2].c[t2c] == val) {
+			printf("\t %d \t %d \t %d \t %d \t %d\n", t1[r1].c[0], t1[r1].c[1], t1[r1].c[2], t2[r2].c[1], t2[r2].c[2]);
 			
-			if (r1 != 14 && t1[r1 + 1].c3 == t2[r2].c1)
+			if (r1 != 14 && t1[r1 + 1].c[t1c] == t2[r2].c[t2c])
 				r1++;
-			else if (r2 != 10 && t1[r1].c3 == t2[r2 + 1].c1)
+			else if (r2 != 10 && t1[r1].c[t1c] == t2[r2 + 1].c[t2c])
 				r2++;
 			else {
 				r1++;
@@ -182,7 +178,7 @@ void merge_join() {
 			}
 		}
 
-		else if (t1[r1].c3 < t2[r2].c1)
+		else if (t1[r1].c[t1c] < t2[r2].c[t2c])
 			r1++;
 		else
 			r2++;
@@ -196,15 +192,15 @@ int main() {
 	srand((unsigned)time(NULL));
 
 	for (int i = 0; i < 15; i++) {
-		t1[i].c1 = rand() % 100 + 1;
-		t1[i].c2 = rand() % 100 + 1;
-		t1[i].c3 = rand() % 100 + 1;
+		t1[i].c[0] = rand() % 100 + 1;
+		t1[i].c[1] = rand() % 100 + 1;
+		t1[i].c[2] = rand() % 100 + 1;
 	}
 
 	for (int i = 0; i < 10; i++) {
-		t2[i].c1 = rand() % 100 + 1;
-		t2[i].c2 = rand() % 100 + 1;
-		t2[i].c3 = rand() % 100 + 1;
+		t2[i].c[0] = rand() % 100 + 1;
+		t2[i].c[1] = rand() % 100 + 1;
+		t2[i].c[2] = rand() % 100 + 1;
 	}
 
 
@@ -213,10 +209,10 @@ int main() {
 
 
 	// Update the tables
-	t1[10].c3 = 55;
-	t1[14].c3 = 55;
+	t1[10].c[2] = 55;
+	t1[14].c[2] = 55;
 
-	t2[5].c1 = 55;
+	t2[5].c[0] = 55;
 
 
 	// Duplex selection sort program
@@ -236,7 +232,7 @@ int main() {
 
 
 	// merge join of the two tables
-	merge_join();
+	join(2, 0, 55);
 		
 
 	return 0;
