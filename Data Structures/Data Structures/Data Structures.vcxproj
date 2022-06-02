@@ -19,7 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PHW 5-1.cpp" />
+    <ClCompile Include="Sorting-ActiveLearning.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sorting-ActiveLearning.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
